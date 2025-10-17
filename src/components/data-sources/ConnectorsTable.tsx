@@ -78,7 +78,7 @@ interface Connector {
   createdAt: string;
   recordsCount: number;
   errorCount: number;
-  config: Record<string, any>;
+  config: Record<string, unknown>;
 }
 
 export function ConnectorsTable() {

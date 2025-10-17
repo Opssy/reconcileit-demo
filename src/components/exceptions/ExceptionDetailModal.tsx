@@ -18,6 +18,18 @@ interface ExceptionDetailModalProps {
   onUpdate: () => void;
 }
 
+interface RecordData {
+  id: string;
+  amount?: number;
+  date?: string;
+  reference?: string;
+  description?: string;
+  account?: string;
+  currency?: string;
+  status?: string;
+  [key: string]: unknown;
+}
+
 interface Exception {
   id: string;
   type: string;
@@ -30,19 +42,19 @@ interface Exception {
   status: string;
   createdBy: string;
   assignedTo: string | null;
-  sourceRecord?: any;
-  targetRecord?: any;
+  sourceRecord?: RecordData;
+  targetRecord?: RecordData;
   differences: Array<{
     field: string;
-    sourceValue: any;
-    targetValue: any;
+    sourceValue: unknown;
+    targetValue: unknown;
     difference: string;
   }>;
   aiSuggestion: {
     action: string;
     confidence: number;
     explanation: string;
-    suggestedValue?: any;
+    suggestedValue?: unknown;
     reasoning: string;
   };
   comments: Array<{

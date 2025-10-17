@@ -7,22 +7,39 @@ import { useAuth } from "@/hooks/useAuth";
 import { ConnectorGallery } from "@/components/data-sources/ConnectorGallery";
 import { ConnectorModal } from "@/components/data-sources/ConnectorModal";
 
+interface Connector {
+  id: string;
+  name: string;
+  description: string;
+  icon: React.ComponentType<{ className?: string }>;
+  category: string;
+  features: string[];
+  setupTime: string;
+  popularity: "high" | "medium" | "low";
+  status: "active" | "beta" | "coming-soon";
+}
+
+interface ConnectorConfig {
+  name: string;
+  [key: string]: unknown;
+}
+
 export default function NewConnectorPage() {
   const { user } = useAuth();
   const router = useRouter();
   const [showModal, setShowModal] = useState(false);
-  const [selectedConnector, setSelectedConnector] = useState<any>(null);
+  const [selectedConnector, setSelectedConnector] = useState<Connector | null>(null);
 
   if (!user) {
     return null;
   }
 
-  const handleConnectorSelect = (connector: any) => {
+  const handleConnectorSelect = (connector: Connector) => {
     setSelectedConnector(connector);
     setShowModal(true);
   };
 
-  const handleConnectorSave = (data: any) => {
+  const handleConnectorSave = (data: ConnectorConfig) => {
     console.log("Saving new connector:", data);
     // Here you would typically save the connector configuration
     setShowModal(false);

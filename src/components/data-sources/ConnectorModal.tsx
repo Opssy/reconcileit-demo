@@ -30,14 +30,19 @@ interface Connector {
   status: "active" | "beta" | "coming-soon";
 }
 
+interface ConnectorConfig {
+  name?: string;
+  [key: string]: unknown;
+}
+
 interface ConnectorModalProps {
   connector: Connector | null;
   isOpen: boolean;
   onClose: () => void;
-  onSave: (data: any) => void;
+  onSave: (data: ConnectorConfig) => void;
   isLoading?: boolean;
   mode?: "create" | "edit";
-  existingConnector?: any;
+  existingConnector?: Connector;
 }
 
 export function ConnectorModal({
@@ -51,7 +56,7 @@ export function ConnectorModal({
 }: ConnectorModalProps) {
   const [isTesting, setIsTesting] = useState(false);
 
-  const handleSave = (formData: any) => {
+  const handleSave = (formData: ConnectorConfig) => {
     onSave(formData);
   };
 

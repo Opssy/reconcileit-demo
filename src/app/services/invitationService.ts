@@ -6,6 +6,13 @@ export interface InvitationData {
   expiresAt: Date;
 }
 
+interface InvitationDetails {
+  role: string;
+  company: string;
+  country: string;
+  sector: string;
+}
+
 export const invitationService = {
   async createInvitation(data: Omit<InvitationData, 'expiresAt'>): Promise<{ success: boolean; invitationId: string; message: string }> {
     // Simulate API call - replace with actual implementation
@@ -39,7 +46,7 @@ export const invitationService = {
 
     // Mock validation logic - in a real app, this would check against a database
     // For demo purposes, let's simulate finding an invitation for some emails
-    const mockInvitations: Record<string, any> = {
+    const mockInvitations: Record<string, InvitationDetails> = {
       'reviewer@company.com': {
         role: 'Reviewer',
         company: 'TechCorp',

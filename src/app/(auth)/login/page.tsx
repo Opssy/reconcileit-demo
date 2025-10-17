@@ -9,7 +9,6 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
 import {
   Form,
@@ -230,7 +229,7 @@ export default function LoginPage() {
             {/* Sign Up Link */}
             <div className="text-center">
               <span className="text-sm text-gray-600">
-                Don't have an account?{" "}
+                Do not have an account?{" "}
                 <Link href="/register" className="text-blue-600 hover:text-blue-700 font-medium">
                   Sign up
                 </Link>

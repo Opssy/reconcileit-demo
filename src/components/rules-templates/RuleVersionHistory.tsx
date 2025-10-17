@@ -37,10 +37,10 @@ interface RuleVersion {
   changes: Array<{
     type: "added" | "removed" | "modified";
     field: string;
-    oldValue?: any;
-    newValue?: any;
+    oldValue?: unknown;
+    newValue?: unknown;
   }>;
-  ruleData: Record<string, any>;
+  ruleData: Record<string, unknown>;
 }
 
 interface RuleVersionHistoryProps {
@@ -179,7 +179,7 @@ export function RuleVersionHistory({ ruleId, ruleName, onRestore }: RuleVersionH
     }
   };
 
-  const renderDiff = (changes: Array<{ type: string; field: string; oldValue?: any; newValue?: any }>) => {
+  const renderDiff = (changes: Array<{ type: string; field: string; oldValue?: unknown; newValue?: unknown }>) => {
     return (
       <div className="space-y-2">
         {changes.map((change, index) => (

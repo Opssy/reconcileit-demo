@@ -28,6 +28,11 @@ interface Connector {
   status: "active" | "beta" | "coming-soon";
 }
 
+interface ConnectorConfig {
+  name?: string;
+  [key: string]: unknown;
+}
+
 interface ConnectorGalleryProps {
   onConnectorSelect?: (connector: Connector) => void;
   className?: string;
@@ -123,7 +128,7 @@ export function ConnectorGallery({ onConnectorSelect, className = "" }: Connecto
     setSelectedConnector(null);
   };
 
-  const handleSave = (data: any) => {
+  const handleSave = (data: ConnectorConfig) => {
     console.log("Saving connector:", selectedConnector?.id, data);
     // Here you would typically make an API call to save the connector
     setModalOpen(false);

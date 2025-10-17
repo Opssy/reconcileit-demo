@@ -34,7 +34,11 @@ export function ExceptionTypesChart({
   const colors = ["#ef4444", "#f97316", "#eab308", "#22c55e", "#3b82f6"];
 
   // Custom tooltip
-  const CustomTooltip = ({ active, payload, label }: any) => {
+  const CustomTooltip = ({ active, payload, label }: {
+    active?: boolean;
+    payload?: Array<{ value: number; payload: { type: string; count: number; percentage: number } }>;
+    label?: string;
+  }) => {
     if (active && payload && payload.length) {
       return (
         <div className="bg-white p-3 border border-gray-200 rounded-lg shadow-lg">
@@ -54,7 +58,13 @@ export function ExceptionTypesChart({
   };
 
   // Custom label for bars
-  const CustomLabel = (props: any) => {
+  const CustomLabel = (props: {
+    x: number;
+    y: number;
+    width: number;
+    height: number;
+    value: number;
+  }) => {
     const { x, y, width, height, value } = props;
     return (
       <text

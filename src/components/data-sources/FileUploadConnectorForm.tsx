@@ -251,7 +251,7 @@ export function FileUploadConnectorForm({ onSubmit, initialData, isLoading }: Fi
                   <div className="space-y-0.5">
                     <FormLabel className="text-base">Auto-Process Files</FormLabel>
                     <FormDescription>
-                      Automatically process uploaded files as soon as they're uploaded
+                      Automatically process uploaded files as soon as they&apos;re uploaded
                     </FormDescription>
                   </div>
                   <FormControl>

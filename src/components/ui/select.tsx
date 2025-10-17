@@ -24,9 +24,21 @@ interface SelectContentProps {
   children: React.ReactNode
 }
 
+interface SelectContentChildProps {
+  children: React.ReactNode;
+}
+
 interface SelectItemProps {
   value: string
   children: React.ReactNode
+}
+
+interface ExtendedSelectProps {
+  value?: string;
+  selectedLabel?: string;
+  onValueChange?: (value: string, label: string) => void;
+  isOpen?: boolean;
+  setIsOpen?: (open: boolean) => void;
 }
 
 export function Select({ value, onValueChange, children }: SelectProps) {
@@ -40,12 +52,12 @@ export function Select({ value, onValueChange, children }: SelectProps) {
     setSelectedValue(value || "")
     
     if (value) {
-      // Find the label for the selected value
       React.Children.forEach(children, (child) => {
         if (React.isValidElement(child) && child.type === SelectContent) {
-          React.Children.forEach((child.props as any).children, (item: any) => {
-            if (React.isValidElement(item) && (item.props as any).value === value) {
-              setSelectedLabel(String((item.props as any).children))
+          const contentChildren = (child.props as { children: React.ReactNode }).children;
+          React.Children.forEach(contentChildren, (item) => {
+            if (React.isValidElement(item) && (item.props as { value: string }).value === value) {
+              setSelectedLabel(String((item.props as { children: React.ReactNode }).children))
             }
           })
         }
@@ -88,7 +100,7 @@ export function Select({ value, onValueChange, children }: SelectProps) {
             onValueChange: handleValueChange,
             isOpen,
             setIsOpen,
-          } as any)
+          } as ExtendedSelectProps)
         }
         return child
       })}
@@ -108,7 +120,7 @@ export function SelectTrigger({ className, children, isOpen, setIsOpen, value, s
     >
       {React.Children.map(children, (child) => {
         if (React.isValidElement(child)) {
-          return React.cloneElement(child, { selectedLabel } as any)
+          return React.cloneElement(child, { selectedLabel } as { selectedLabel?: string })
         }
         return child
       })}

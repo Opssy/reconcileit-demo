@@ -57,7 +57,7 @@ interface ReconciliationRun {
       endTime: string;
       duration: number;
       metrics: {
-        [key: string]: any;
+        [key: string]: unknown;
       };
     }>;
   };
@@ -76,11 +76,11 @@ interface ReconciliationResult {
   status: "match" | "partial" | "exception";
   datasetA: {
     source: string;
-    record: any;
+    record: Record<string, unknown>;
   };
   datasetB: {
     source: string;
-    record: any;
+    record: Record<string, unknown>;
   };
   matchDetails: {
     confidence: number;

@@ -17,10 +17,10 @@ export interface RuleVersion {
   changes: Array<{
     type: "added" | "removed" | "modified";
     field: string;
-    oldValue?: any;
-    newValue?: any;
+    oldValue?: unknown;
+    newValue?: unknown;
   }>;
-  ruleData: Record<string, any>;
+  ruleData: Record<string, unknown>;
 }
 
 export interface Rule {
@@ -174,7 +174,7 @@ export function useDeleteRule() {
 
 export function useTestRule() {
   return useMutation({
-    mutationFn: async ({ ruleId, testData }: { ruleId: string; testData: any }): Promise<any> => {
+    mutationFn: async ({ ruleId, testData }: { ruleId: string; testData: Record<string, unknown> }): Promise<Record<string, unknown>> => {
       const response = await fetch(`/api/rules/${ruleId}/test`, {
         method: "POST",
         headers: {

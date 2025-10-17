@@ -261,7 +261,7 @@ export function ExceptionKanban() {
     setSelectedExceptions(newSelected);
   };
 
-  const handleBulkAction = async (action: string, data?: any) => {
+  const handleBulkAction = async (action: string, data?: Record<string, unknown>) => {
     try {
       const response = await fetch("/api/exceptions/bulk-update", {
         method: "POST",
@@ -284,7 +284,7 @@ export function ExceptionKanban() {
     }
   };
 
-  const handleExport = async (format: string, options: any) => {
+  const handleExport = async (format: string, options: Record<string, unknown>) => {
     // In a real app, this would generate and download the file
     console.log("Exporting exceptions:", { format, options });
 
@@ -378,6 +378,7 @@ export function ExceptionKanban() {
 
                 {/* Droppable Area */}
                 <Droppable droppableId={column.id}>
+                  {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
                   {(provided: any, snapshot: any) => (
                     <div
                       ref={provided.innerRef}
@@ -392,6 +393,7 @@ export function ExceptionKanban() {
                           draggableId={exception.id}
                           index={index}
                         >
+                          {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
                           {(provided: any, snapshot: any) => (
                             <div
                               ref={provided.innerRef}

@@ -86,7 +86,7 @@ export default function ForgotPasswordPage() {
             Reset your password
           </h2>
           <p className="mt-2 text-sm text-gray-600">
-            Enter your email address and we'll send you a link to reset your password
+            Enter your email address and we&apos;ll send you a link to reset your password
           </p>
         </div>
 
@@ -102,13 +102,13 @@ export default function ForgotPasswordPage() {
                   Check your email
                 </h3>
                 <p className="mt-2 text-sm text-gray-600">
-                  We've sent a password reset link to{" "}
+                  We&apos;ve sent a password reset link to{" "}
                   <span className="font-medium text-gray-900">
                     {form.getValues("email")}
                   </span>
                 </p>
                 <p className="mt-2 text-sm text-gray-600">
-                  Click the link in the email to reset your password. If you don't see it, check your spam folder.
+                  Click the link in the email to reset your password. If you don&apos;t see it, check your spam folder.
                 </p>
               </div>
             </div>
@@ -173,7 +173,7 @@ export default function ForgotPasswordPage() {
               {/* Sign Up Link */}
               <div className="text-center">
                 <span className="text-sm text-gray-600">
-                  Don't have an account?{" "}
+                  Do not have an account?{" "}
                   <Link href="/register" className="text-blue-600 hover:text-blue-700 font-medium">
                     Sign up
                   </Link>

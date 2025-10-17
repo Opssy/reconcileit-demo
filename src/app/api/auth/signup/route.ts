@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 
 // Mock user database - in real app, this would be a database
-let users: Array<{
+const users: Array<{
   id: string;
   firstName: string;
   lastName: string;

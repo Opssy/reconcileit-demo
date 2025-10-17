@@ -304,7 +304,7 @@ export async function POST(request: NextRequest) {
         continue; // Skip if exception not found
       }
 
-      let updatedException = { ...exception };
+      const updatedException = { ...exception };
 
       switch (action) {
         case "assign":

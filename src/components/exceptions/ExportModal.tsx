@@ -11,7 +11,7 @@ import { Download, FileText, FileSpreadsheet, File } from "lucide-react";
 interface ExportModalProps {
   selectedCount: number;
   selectedIds: string[];
-  onExport: (format: string, options: any) => void;
+  onExport: (format: string, options: Record<string, unknown>) => void;
   trigger?: React.ReactNode;
 }
 

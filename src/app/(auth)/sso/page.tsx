@@ -1,6 +1,5 @@
 "use client";
 
-import { useState } from "react";
 import { useMutation } from "@tanstack/react-query";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -90,7 +89,7 @@ export default function SSOPage() {
             Sign in with SSO
           </h2>
           <p className="mt-2 text-sm text-gray-600">
-            Enter your organization's domain to continue
+            Enter your organization&apos;s domain to continue
           </p>
         </div>
 
@@ -117,7 +116,7 @@ export default function SSOPage() {
                     </div>
                   </FormControl>
                   <FormDescription>
-                    Enter your organization's domain name (without the full URL)
+                    Enter your organization&apos;s domain name (without the full URL)
                   </FormDescription>
                   <FormMessage />
                 </FormItem>
@@ -172,7 +171,7 @@ export default function SSOPage() {
               </Link>
               <div className="text-center">
                 <span className="text-sm text-gray-600">
-                  Don't have an account?{" "}
+                  Do not have an account?{" "}
                   <Link href="/register" className="text-blue-600 hover:text-blue-700 font-medium">
                     Sign up
                   </Link>

@@ -34,7 +34,7 @@ export function TemplateGallery({ templates, searchTerm, filterCategory, getComp
 
   // Filter templates based on search term and category
   const filteredTemplates = useMemo(() => {
-    let filtered = templates.filter(template => {
+    const filtered = templates.filter(template => {
       const matchesSearch = template.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
                            template.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
                            template.tags.some(tag => tag.toLowerCase().includes(searchTerm.toLowerCase()));
@@ -97,7 +97,7 @@ export function TemplateGallery({ templates, searchTerm, filterCategory, getComp
     <>
       <div className="flex items-center justify-between mb-6">
         <div className="flex items-center gap-4">
-          <Select value={sortBy} onValueChange={(value: any) => setSortBy(value)}>
+          <Select value={sortBy} onValueChange={(value: string) => setSortBy(value)}>
             <SelectTrigger className="w-48">
               <SelectValue placeholder="Sort by..." />
             </SelectTrigger>

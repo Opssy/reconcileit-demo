@@ -20,7 +20,7 @@ interface ExceptionFiltersProps {
     assignee: string;
     status: string;
   };
-  onFiltersChange: (filters: any) => void;
+  onFiltersChange: (filters: Record<string, unknown>) => void;
   onClearFilters: () => void;
 }
 

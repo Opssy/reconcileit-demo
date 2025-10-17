@@ -16,7 +16,7 @@ interface TransformationStep {
   id: string;
   type: "select-columns" | "type-cast" | "filter" | "derive-fields" | "rename";
   name: string;
-  config: Record<string, any>;
+  config: Record<string, unknown>;
   position: { x: number; y: number };
 }
 
@@ -56,7 +56,7 @@ export function RuleBuilder() {
   const addStep = (stepType: string) => {
     const newStep: TransformationStep = {
       id: `step-${Date.now()}`,
-      type: stepType as any,
+      type: stepType as "select-columns" | "type-cast" | "filter" | "derive-fields" | "rename",
       name: STEP_TYPES.find(s => s.id === stepType)?.name || stepType,
       config: {},
       position: { x: 300 + steps.length * 200, y: 100 }
@@ -73,7 +73,7 @@ export function RuleBuilder() {
     }
   };
 
-  const updateStepConfig = (stepId: string, config: Record<string, any>) => {
+  const updateStepConfig = (stepId: string, config: Record<string, unknown>) => {
     setSteps(steps.map(step =>
       step.id === stepId ? { ...step, config } : step
     ));

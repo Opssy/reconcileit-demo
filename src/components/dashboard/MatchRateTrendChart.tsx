@@ -38,12 +38,23 @@ export function MatchRateTrendChart({
   };
 
   // Custom tooltip
-  const CustomTooltip = ({ active, payload, label }: any) => {
+  const CustomTooltip = ({
+    active,
+    payload,
+    label,
+  }: {
+    active?: boolean;
+    payload?: Array<{
+      value: number;
+      payload: { date: string; matchRate: number; volume: number };
+    }>;
+    label?: string;
+  }) => {
     if (active && payload && payload.length) {
       return (
         <div className="bg-white p-3 border border-gray-200 rounded-lg shadow-lg">
           <p className="text-sm font-medium text-gray-900 mb-1">
-            {formatDate(label)}
+            {formatDate(label || "")}
           </p>
           <p className="text-sm text-blue-600">
             Match Rate: <span className="font-semibold">{payload[0].value}%</span>

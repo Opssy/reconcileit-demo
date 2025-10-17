@@ -13,7 +13,7 @@ import { Calendar, Clock, Repeat } from "lucide-react";
 interface ScheduleModalProps {
   open: boolean;
   onClose: () => void;
-  onSchedule: (scheduleData: any) => void;
+  onSchedule: (scheduleData: Record<string, unknown>) => void;
 }
 
 export function ScheduleModal({ open, onClose, onSchedule }: ScheduleModalProps) {

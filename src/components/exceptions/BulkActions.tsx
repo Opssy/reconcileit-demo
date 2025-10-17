@@ -10,7 +10,7 @@ import { AssignmentModal } from "./AssignmentModal";
 interface BulkActionsProps {
   selectedCount: number;
   selectedIds: string[];
-  onBulkAction: (action: string, data?: any) => void;
+  onBulkAction: (action: string, data?: Record<string, unknown>) => void;
   onClearSelection: () => void;
 }
 

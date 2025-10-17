@@ -7,10 +7,6 @@ interface AvatarProps extends React.HTMLAttributes<HTMLDivElement> {
   children?: React.ReactNode;
 }
 
-interface AvatarImageProps extends React.ImgHTMLAttributes<HTMLImageElement> {}
-
-interface AvatarFallbackProps extends React.HTMLAttributes<HTMLDivElement> {}
-
 const Avatar = React.forwardRef<HTMLDivElement, AvatarProps>(
   ({ className, children, ...props }, ref) => (
     <div
@@ -27,7 +23,7 @@ const Avatar = React.forwardRef<HTMLDivElement, AvatarProps>(
 )
 Avatar.displayName = "Avatar"
 
-const AvatarImage = React.forwardRef<HTMLImageElement, AvatarImageProps>(
+const AvatarImage = React.forwardRef<HTMLImageElement, React.ImgHTMLAttributes<HTMLImageElement>>(
   ({ className, ...props }, ref) => (
     <img
       ref={ref}
@@ -38,7 +34,7 @@ const AvatarImage = React.forwardRef<HTMLImageElement, AvatarImageProps>(
 )
 AvatarImage.displayName = "AvatarImage"
 
-const AvatarFallback = React.forwardRef<HTMLDivElement, AvatarFallbackProps>(
+const AvatarFallback = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(
   ({ className, children, ...props }, ref) => (
     <div
       ref={ref}
