@@ -63,7 +63,6 @@ export function APIConnectorForm({ onSubmit, initialData, isLoading }: APIConnec
     initialData?.headers || []
   );
 
-  // @ts-expect-error - react-hook-form type inference issue with zod resolver
   const form = useForm<APIConnectorFormData>({
     resolver: zodResolver(apiConnectorSchema),
     mode: "onChange",
