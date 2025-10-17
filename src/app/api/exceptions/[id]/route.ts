@@ -268,10 +268,10 @@ const mockExceptions = [
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    const exceptionId = params.id;
+    const { id: exceptionId } = await params;
 
     const exception = mockExceptions.find(exc => exc.id === exceptionId);
 
@@ -294,10 +294,10 @@ export async function GET(
 
 export async function PUT(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    const exceptionId = params.id;
+    const { id: exceptionId } = await params;
     const body = await request.json();
     const { status, assignedTo, resolution } = body;
 

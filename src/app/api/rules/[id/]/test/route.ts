@@ -69,10 +69,10 @@ const mockRules = [
 
 export async function POST(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    const ruleId = params.id;
+    const { id: ruleId } = await params;
     const rule = mockRules.find(r => r.id === ruleId);
 
     if (!rule) {

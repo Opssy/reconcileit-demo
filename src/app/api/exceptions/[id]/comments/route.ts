@@ -46,10 +46,10 @@ const mockComments = {
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    const exceptionId = params.id;
+    const { id: exceptionId } = await params;
 
     const comments = mockComments[exceptionId as keyof typeof mockComments] || [];
 
@@ -65,10 +65,10 @@ export async function GET(
 
 export async function POST(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    const exceptionId = params.id;
+    const { id: exceptionId } = await params;
     const body = await request.json();
     const { content, user, userName, avatar } = body;
 

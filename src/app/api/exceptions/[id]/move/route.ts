@@ -2,12 +2,12 @@ import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id: exceptionId } = await params;
     const body = await request.json();
     const { newStatus, assignedTo } = body;
-    const exceptionId = params.id;
 
     // In a real app, update the database
     // For now, return success response

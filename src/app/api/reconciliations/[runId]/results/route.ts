@@ -206,10 +206,10 @@ const mockResults = {
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: { runId: string } }
+  { params }: { params: Promise<{ runId: string }> }
 ) {
   try {
-    const runId = params.runId;
+    const { runId } = await params;
     const { searchParams } = new URL(request.url);
 
     // Extract query parameters for filtering

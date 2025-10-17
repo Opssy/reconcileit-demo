@@ -266,10 +266,10 @@ const mockRunDetails = {
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: { runId: string } }
+  { params }: { params: Promise<{ runId: string }> }
 ) {
   try {
-    const runId = params.runId;
+    const { runId } = await params;
 
     // In a real app, fetch from database
     const runDetails = mockRunDetails[runId as keyof typeof mockRunDetails];
