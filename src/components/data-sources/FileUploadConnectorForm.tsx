@@ -34,14 +34,14 @@ const fileUploadConnectorSchema = z.object({
   name: z.string().min(1, "Connector name is required").max(100, "Name too long"),
   uploadPath: z.string().min(1, "Upload path is required"),
   fileTypes: z.array(z.string()).min(1, "At least one file type must be selected"),
-  maxFileSize: z.number().min(1).max(1000).default(100), // MB
-  autoProcess: z.boolean().default(true),
+  maxFileSize: z.number().min(1).max(1000).catch(100), // MB
+  autoProcess: z.boolean().catch(true),
   processSchedule: z.enum(["immediate", "hourly", "daily", "weekly"]),
   scheduleTime: z.string().optional(),
-  backupOriginal: z.boolean().default(true),
-  validateHeaders: z.boolean().default(true),
-  skipDuplicates: z.boolean().default(false),
-  archiveProcessed: z.boolean().default(true),
+  backupOriginal: z.boolean().catch(true),
+  validateHeaders: z.boolean().catch(true),
+  skipDuplicates: z.boolean().catch(false),
+  archiveProcessed: z.boolean().catch(true),
   notificationEmail: z.string().email().optional().or(z.literal("")),
   description: z.string().max(500, "Description too long").optional(),
 }).refine(
@@ -270,7 +270,7 @@ export function FileUploadConnectorForm({ onSubmit, initialData, isLoading }: Fi
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>Processing Schedule</FormLabel>
-                  <Select onValueChange={field.onChange} defaultValue={field.value}>
+                  <Select onValueChange={field.onChange} value={field.value}>
                     <FormControl>
                       <SelectTrigger>
                         <SelectValue placeholder="Select processing schedule" />

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import React, { useState, useMemo } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -24,7 +24,7 @@ interface TemplateGalleryProps {
   templates: Template[];
   searchTerm: string;
   filterCategory: string;
-  getComplexityBadge: (complexity: string) => JSX.Element;
+  getComplexityBadge: (complexity: string) => React.ReactElement;
   isLoading?: boolean;
 }
 
@@ -97,7 +97,7 @@ export function TemplateGallery({ templates, searchTerm, filterCategory, getComp
     <>
       <div className="flex items-center justify-between mb-6">
         <div className="flex items-center gap-4">
-          <Select value={sortBy} onValueChange={(value: string) => setSortBy(value)}>
+          <Select value={sortBy} onValueChange={(value: string) => setSortBy(value as "popular" | "rating" | "newest" | "name")}>
             <SelectTrigger className="w-48">
               <SelectValue placeholder="Sort by..." />
             </SelectTrigger>

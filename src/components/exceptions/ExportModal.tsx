@@ -82,7 +82,7 @@ export function ExportModal({
 
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
-      <DialogTrigger asChild>
+      <DialogTrigger onClick={() => setIsOpen(true)}>
         {trigger || defaultTrigger}
       </DialogTrigger>
       <DialogContent className="sm:max-w-md">

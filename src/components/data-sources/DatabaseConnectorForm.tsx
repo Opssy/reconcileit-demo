@@ -38,10 +38,10 @@ const databaseConnectorSchema = z.object({
   username: z.string().min(1, "Username is required"),
   password: z.string().min(1, "Password is required"),
   sslMode: z.enum(["disable", "require", "verify-ca", "verify-full"]),
-  connectionTimeout: z.number().min(1).max(300).default(30),
-  queryTimeout: z.number().min(1).max(3600).default(300),
-  maxConnections: z.number().min(1).max(100).default(10),
-  enableConnectionPooling: z.boolean().default(true),
+  connectionTimeout: z.number().min(1).max(300).catch(30),
+  queryTimeout: z.number().min(1).max(3600).catch(300),
+  maxConnections: z.number().min(1).max(100).catch(10),
+  enableConnectionPooling: z.boolean().catch(true),
   testQuery: z.string().optional(),
   description: z.string().max(500, "Description too long").optional(),
 });
@@ -233,7 +233,7 @@ export function DatabaseConnectorForm({ onSubmit, initialData, isLoading }: Data
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>SSL Mode</FormLabel>
-                  <Select onValueChange={field.onChange} defaultValue={field.value}>
+                  <Select onValueChange={field.onChange} value={field.value}>
                     <FormControl>
                       <SelectTrigger>
                         <SelectValue placeholder="Select SSL mode" />

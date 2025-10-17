@@ -32,7 +32,7 @@ export function ExceptionFilters({
   const [isExpanded, setIsExpanded] = useState(false);
 
   const handleFilterChange = (key: string, value: string) => {
-    onFiltersChange({ ...filters, [key]: value });
+    onFiltersChange({ ...filters, [key]: value } as Record<string, unknown>);
   };
 
   const hasActiveFilters = Object.values(filters).some(value =>
@@ -61,7 +61,7 @@ export function ExceptionFilters({
               <Button
                 variant="ghost"
                 size="sm"
-                onClick={onClearFilters}
+                onClick={() => onClearFilters()}
                 className="flex items-center gap-1"
               >
                 <RotateCcw className="w-4 h-4" />
@@ -219,7 +219,7 @@ export function ExceptionFilters({
                 <Button
                   variant="ghost"
                   size="sm"
-                  onClick={onClearFilters}
+                  onClick={() => onClearFilters()}
                   className="text-xs"
                 >
                   Clear All

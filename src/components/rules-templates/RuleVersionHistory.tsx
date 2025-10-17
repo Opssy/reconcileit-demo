@@ -121,14 +121,6 @@ export function RuleVersionHistory({ ruleId, ruleName, onRestore }: RuleVersionH
   const [restoreDialogOpen, setRestoreDialogOpen] = useState(false);
   const [versionToRestore, setVersionToRestore] = useState<string | null>(null);
 
-  const formatDate = (dateString: string) => {
-    try {
-      return format(new Date(dateString), "MMM d, yyyy 'at' h:mm a");
-    } catch {
-      return "Invalid date";
-    }
-  };
-
   const getChangeIcon = (changeType: string) => {
     switch (changeType) {
       case "created":

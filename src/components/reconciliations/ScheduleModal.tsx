@@ -67,7 +67,7 @@ export function ScheduleModal({ open, onClose, onSchedule }: ScheduleModalProps)
           {/* Schedule Type */}
           <div className="space-y-2">
             <Label>Schedule Type</Label>
-            <Select value={scheduleType} onValueChange={(value: "once" | "recurring") => setScheduleType(value)}>
+            <Select value={scheduleType} onValueChange={(value: string) => setScheduleType(value as "once" | "recurring")}>
               <SelectTrigger>
                 <SelectValue />
               </SelectTrigger>

@@ -350,10 +350,10 @@ export function RunDetailsPage({ runId: propRunId }: RunDetailsPageProps) {
                       <span className="text-gray-600">End:</span>
                       <span className="ml-2 font-medium">{formatDate(stage.endTime)}</span>
                     </div>
-                    {stage.metrics.recordsIngested && (
+                    {(stage.metrics.recordsIngested as number) > 0 && (
                       <div>
                         <span className="text-gray-600">Records:</span>
-                        <span className="ml-2 font-medium">{stage.metrics.recordsIngested.toLocaleString()}</span>
+                        <span className="ml-2 font-medium">{(stage.metrics.recordsIngested as number).toLocaleString()}</span>
                       </div>
                     )}
                   </div>
@@ -421,10 +421,10 @@ export function RunDetailsPage({ runId: propRunId }: RunDetailsPageProps) {
                       <div className="space-y-1">
                         <div className="font-medium text-sm">{result.datasetA.source}</div>
                         <div className="text-xs text-gray-600">
-                          ID: {result.datasetA.record.transactionId}
+                          ID: {(result.datasetA.record.transactionId as string)}
                         </div>
                         <div className="text-xs text-gray-600">
-                          Amount: ${result.datasetA.record.amount}
+                          Amount: ${(result.datasetA.record.amount as number)}
                         </div>
                       </div>
                     </TableCell>
@@ -433,10 +433,10 @@ export function RunDetailsPage({ runId: propRunId }: RunDetailsPageProps) {
                         <div className="space-y-1">
                           <div className="font-medium text-sm">{result.datasetB.source}</div>
                           <div className="text-xs text-gray-600">
-                            ID: {result.datasetB.record.transactionId}
+                            ID: {(result.datasetB.record.transactionId as string)}
                           </div>
                           <div className="text-xs text-gray-600">
-                            Amount: ${result.datasetB.record.amount}
+                            Amount: ${(result.datasetB.record.amount as number)}
                           </div>
                         </div>
                       ) : (

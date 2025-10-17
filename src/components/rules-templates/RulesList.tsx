@@ -43,7 +43,7 @@ interface RulesListProps {
   rules: Rule[];
   searchTerm: string;
   filterCategory: string;
-  getStatusBadge: (status: string) => JSX.Element;
+  getStatusBadge: (status: string) => React.ReactElement;
   isLoading?: boolean;
 }
 

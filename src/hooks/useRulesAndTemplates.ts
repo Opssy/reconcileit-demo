@@ -47,11 +47,14 @@ export interface Template {
   id: string;
   name: string;
   description: string;
-  category: string;
+  version: string;
+  lastModified: string;
   complexity: "simple" | "intermediate" | "advanced";
+  category: string;
+  createdBy: string;
+  tags: string[];
   usageCount: number;
   rating: number;
-  tags: string[];
   preview: string;
   logicTemplate: string;
   conditionsTemplate: Array<{

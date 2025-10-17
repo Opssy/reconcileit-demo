@@ -12,6 +12,7 @@ interface DialogProps {
 
 interface DialogTriggerProps {
   children: React.ReactNode
+  onClick?: () => void
 }
 
 export function Dialog({ open, onOpenChange, children }: DialogProps) {
@@ -30,8 +31,12 @@ export function Dialog({ open, onOpenChange, children }: DialogProps) {
   )
 }
 
-export function DialogTrigger({ children }: DialogTriggerProps) {
-  return <>{children}</>
+export function DialogTrigger({ children, onClick }: DialogTriggerProps) {
+  return (
+    <div onClick={onClick}>
+      {children}
+    </div>
+  )
 }
 
 export function DialogContent({ className, children }: { className?: string; children: React.ReactNode }) {

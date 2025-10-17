@@ -1,8 +1,8 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { DragDropContext, Droppable, Draggable, DropResult } from "react-beautiful-dnd";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
+import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Checkbox } from "@/components/ui/checkbox";
@@ -11,7 +11,7 @@ import { ExceptionDetailModal } from "./ExceptionDetailModal";
 import { ExceptionFilters } from "./ExceptionFilters";
 import { BulkActions } from "./BulkActions";
 import { ExportModal } from "./ExportModal";
-import { LayoutGrid, LayoutList, CheckSquare } from "lucide-react";
+import { LayoutGrid, LayoutList } from "lucide-react";
 
 interface Exception {
   id: string;
@@ -55,10 +55,9 @@ export function ExceptionKanban() {
     fetchExceptions();
   }, []);
 
-  useEffect(() => {
-    // Apply filters when they change
-    fetchExceptions();
-  }, [filters]);
+  const handleFiltersChange = (newFilters: Record<string, unknown>) => {
+    setFilters(newFilters as typeof filters);
+  };
 
   const fetchExceptions = async () => {
     try {
@@ -167,8 +166,12 @@ export function ExceptionKanban() {
     return Object.values(statusMap);
   };
 
-  const handleDragEnd = async (result: DropResult) => {
-    const { source, destination, draggableId } = result;
+  const handleDragEnd = async (result: {
+    source: { droppableId: string; index: number };
+    destination: { droppableId: string; index: number } | null;
+    draggableId: string;
+  }) => {
+    const { source, destination } = result;
 
     if (!destination) return;
 
@@ -339,7 +342,7 @@ export function ExceptionKanban() {
       {/* Filters */}
       <ExceptionFilters
         filters={filters}
-        onFiltersChange={setFilters}
+        onFiltersChange={handleFiltersChange}
         onClearFilters={() => setFilters({
           type: "all",
           severity: "all",
@@ -408,7 +411,6 @@ export function ExceptionKanban() {
                                   onCheckedChange={(checked) =>
                                     handleSelectException(exception.id, checked as boolean)
                                   }
-                                  onClick={(e) => e.stopPropagation()}
                                 />
                               </div>
 

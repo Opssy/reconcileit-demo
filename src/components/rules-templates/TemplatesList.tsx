@@ -41,7 +41,7 @@ interface TemplatesListProps {
   templates: Template[];
   searchTerm: string;
   filterCategory: string;
-  getComplexityBadge: (complexity: string) => JSX.Element;
+  getComplexityBadge: (complexity: string) => React.ReactElement;
   isLoading?: boolean;
 }
 
