@@ -41,11 +41,11 @@ const apiConnectorSchema = z.object({
   headers: z.array(z.object({
     key: z.string().min(1, "Header key is required"),
     value: z.string().min(1, "Header value is required"),
-  })).default([]),
-  timeout: z.number().min(1).max(300).default(30),
-  retryCount: z.number().min(0).max(10).default(3),
-  rateLimit: z.number().min(1).default(100),
-  enableLogging: z.boolean().default(true),
+  })).catch([]),
+  timeout: z.number().min(1).max(300).catch(30),
+  retryCount: z.number().min(0).max(10).catch(3),
+  rateLimit: z.number().min(1).catch(100),
+  enableLogging: z.boolean().catch(true),
   description: z.string().max(500, "Description too long").optional(),
 });
 
@@ -181,7 +181,7 @@ export function APIConnectorForm({ onSubmit, initialData, isLoading }: APIConnec
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>Authentication Method</FormLabel>
-                  <Select onValueChange={field.onChange} defaultValue={field.value}>
+                  <Select onValueChange={field.onChange} value={field.value}>
                     <FormControl>
                       <SelectTrigger>
                         <SelectValue placeholder="Select authentication method" />
