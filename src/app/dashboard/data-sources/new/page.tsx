@@ -20,7 +20,7 @@ interface Connector {
 }
 
 interface ConnectorConfig {
-  name: string;
+  name?: string;
   [key: string]: unknown;
 }
 

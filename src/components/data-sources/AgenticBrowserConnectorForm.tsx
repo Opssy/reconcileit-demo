@@ -69,8 +69,9 @@ export function AgenticBrowserConnectorForm({ onSubmit, initialData, isLoading }
 
   const form = useForm<AgenticBrowserConnectorFormData>({
     resolver: zodResolver(agenticBrowserConnectorSchema),
+    mode: "onChange",
     defaultValues: {
-      name: initialData?.name || "",
+      name: initialData?.name ?? "",
       targetUrls: initialData?.targetUrls || [],
       extractionRules: initialData?.extractionRules || "// Example: Extract all table data\n// document.querySelectorAll('table tr').forEach(row => { ... });",
       schedule: initialData?.schedule || "manual",
