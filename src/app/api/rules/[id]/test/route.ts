@@ -86,7 +86,13 @@ export async function POST(
     const { testData } = body;
 
     // Simulate rule testing with mock data
-    const testResults = {
+    const testResults: {
+      passed: boolean;
+      totalRecords: number;
+      passedRecords: number;
+      failedRecords: number;
+      errors: Array<{ recordId: string; field: string; expected: string; actual: string; message: string }>;
+    } = {
       passed: Math.random() > 0.3, // 70% pass rate for demo
       totalRecords: testData?.length || 100,
       passedRecords: Math.floor((testData?.length || 100) * (Math.random() > 0.3 ? 0.9 : 0.6)),
