@@ -63,20 +63,22 @@ export function APIConnectorForm({ onSubmit, initialData, isLoading }: APIConnec
     initialData?.headers || []
   );
 
+  // @ts-expect-error - react-hook-form type inference issue with zod resolver
   const form = useForm<APIConnectorFormData>({
     resolver: zodResolver(apiConnectorSchema),
+    mode: "onChange",
     defaultValues: {
-      name: initialData?.name || "",
-      baseUrl: initialData?.baseUrl || "",
-      authType: initialData?.authType || "none",
-      apiKey: initialData?.apiKey || "",
-      username: initialData?.username || "",
-      password: initialData?.password || "",
-      bearerToken: initialData?.bearerToken || "",
-      headers: initialData?.headers || [],
-      timeout: initialData?.timeout || 30,
-      retryCount: initialData?.retryCount || 3,
-      rateLimit: initialData?.rateLimit || 100,
+      name: initialData?.name ?? "",
+      baseUrl: initialData?.baseUrl ?? "",
+      authType: initialData?.authType ?? "none",
+      apiKey: initialData?.apiKey ?? "",
+      username: initialData?.username ?? "",
+      password: initialData?.password ?? "",
+      bearerToken: initialData?.bearerToken ?? "",
+      headers: initialData?.headers ?? [],
+      timeout: initialData?.timeout ?? 30,
+      retryCount: initialData?.retryCount ?? 3,
+      rateLimit: initialData?.rateLimit ?? 100,
       enableLogging: initialData?.enableLogging ?? true,
       description: initialData?.description || "",
     },
